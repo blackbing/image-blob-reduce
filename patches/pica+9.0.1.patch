@@ -1,0 +1,28 @@
+diff --git a/node_modules/pica/dist/pica.js b/node_modules/pica/dist/pica.js
+index d2257b9..149e253 100644
+--- a/node_modules/pica/dist/pica.js
++++ b/node_modules/pica/dist/pica.js
+@@ -1187,14 +1187,20 @@ module.exports.worker_offscreen_canvas_support = function worker_offscreen_canva
+       });
+     }
+ 
+-    var code = btoa("(".concat(workerPayload.toString(), ")(self);"));
+-    var w = new Worker("data:text/javascript;base64,".concat(code));
++    var code = "(".concat(workerPayload.toString(), ")(self);");
++    var blob = new Blob([code], { type: 'text/javascript' });
++    var blobURL = URL.createObjectURL(blob);
++    var w = new Worker(blobURL);
+ 
+     w.onmessage = function (ev) {
++      URL.revokeObjectURL(blobURL);
+       return resolve(ev.data);
+     };
+ 
+-    w.onerror = reject;
++    w.onerror = function (e) {
++      URL.revokeObjectURL(blobURL);
++      reject(e);
++    };
+   }).then(function (result) {
+     return result;
+   }, function () {

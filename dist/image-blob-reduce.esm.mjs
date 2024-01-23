@@ -4,7 +4,7 @@ var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require
 }) : x)(function(x) {
   if (typeof require !== "undefined")
     return require.apply(this, arguments);
-  throw new Error('Dynamic require of "' + x + '" is not supported');
+  throw Error('Dynamic require of "' + x + '" is not supported');
 });
 var __commonJS = (cb, mod) => function __require2() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
@@ -70,7 +70,7 @@ var require_pica = __commonJS({
       }
     })(function() {
       var define2, module2, exports2;
-      return function() {
+      return (/* @__PURE__ */ function() {
         function r(e, n, t) {
           function o(i2, f) {
             if (!n[i2]) {
@@ -96,7 +96,7 @@ var require_pica = __commonJS({
           return o;
         }
         return r;
-      }()({ 1: [function(_dereq_, module3, exports3) {
+      }())({ 1: [function(_dereq_, module3, exports3) {
         "use strict";
         var Multimath = _dereq_("multimath");
         var mm_unsharp_mask = _dereq_("./mm_unsharp_mask");
@@ -897,12 +897,18 @@ var require_pica = __commonJS({
                 return self2.postMessage(false);
               });
             }
-            var code = btoa("(".concat(workerPayload.toString(), ")(self);"));
-            var w = new Worker("data:text/javascript;base64,".concat(code));
+            var code = "(".concat(workerPayload.toString(), ")(self);");
+            var blob = new Blob([code], { type: "text/javascript" });
+            var blobURL = URL.createObjectURL(blob);
+            var w = new Worker(blobURL);
             w.onmessage = function(ev) {
+              URL.revokeObjectURL(blobURL);
               return resolve(ev.data);
             };
-            w.onerror = reject;
+            w.onerror = function(e) {
+              URL.revokeObjectURL(blobURL);
+              reject(e);
+            };
           }).then(function(result) {
             return result;
           }, function() {
@@ -1328,12 +1334,12 @@ var require_pica = __commonJS({
           var src = "(" + bundleFn + ")({" + Object.keys(workerSources).map(function(key2) {
             return stringify(key2) + ":[" + sources[key2][0] + "," + stringify(sources[key2][1]) + "]";
           }).join(",") + "},{},[" + stringify(skey) + "])";
-          var URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+          var URL2 = window.URL || window.webkitURL || window.mozURL || window.msURL;
           var blob = new Blob([src], { type: "text/javascript" });
           if (options && options.bare) {
             return blob;
           }
-          var workerUrl = URL.createObjectURL(blob);
+          var workerUrl = URL2.createObjectURL(blob);
           var worker = new Worker(workerUrl);
           worker.objectURL = workerUrl;
           return worker;
@@ -2563,9 +2569,9 @@ var require_image_blob_reduce = __commonJS({
       return this;
     };
     ImageBlobReduce.prototype._blob_to_image = function(env) {
-      var URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+      var URL2 = window.URL || window.webkitURL || window.mozURL || window.msURL;
       env.image = document.createElement("img");
-      env.image_url = URL.createObjectURL(env.blob);
+      env.image_url = URL2.createObjectURL(env.blob);
       env.image.src = env.image_url;
       return new Promise(function(resolve, reject) {
         env.image.onerror = function() {
@@ -2598,9 +2604,9 @@ var require_image_blob_reduce = __commonJS({
     ImageBlobReduce.prototype._cleanup = function(env) {
       env.image.src = "";
       env.image = null;
-      var URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
-      if (URL.revokeObjectURL)
-        URL.revokeObjectURL(env.image_url);
+      var URL2 = window.URL || window.webkitURL || window.mozURL || window.msURL;
+      if (URL2.revokeObjectURL)
+        URL2.revokeObjectURL(env.image_url);
       env.image_url = null;
       return Promise.resolve(env);
     };
