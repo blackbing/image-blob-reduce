@@ -2,8 +2,7 @@ var __getOwnPropNames = Object.getOwnPropertyNames;
 var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
   get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
 }) : x)(function(x) {
-  if (typeof require !== "undefined")
-    return require.apply(this, arguments);
+  if (typeof require !== "undefined") return require.apply(this, arguments);
   throw Error('Dynamic require of "' + x + '" is not supported');
 });
 var __commonJS = (cb, mod) => function __require2() {
@@ -19,8 +18,7 @@ var require_utils = __commonJS({
       for (var s = 1; s < arguments.length; s++) {
         from = Object(arguments[s]);
         for (var key in from) {
-          if (Object.prototype.hasOwnProperty.call(from, key))
-            to[key] = from[key];
+          if (Object.prototype.hasOwnProperty.call(from, key)) to[key] = from[key];
         }
       }
       return to;
@@ -28,8 +26,7 @@ var require_utils = __commonJS({
     function pick(from, props) {
       var to = {};
       props.forEach(function(key) {
-        if (Object.prototype.hasOwnProperty.call(from, key))
-          to[key] = from[key];
+        if (Object.prototype.hasOwnProperty.call(from, key)) to[key] = from[key];
       });
       return to;
     }
@@ -76,10 +73,8 @@ var require_pica = __commonJS({
             if (!n[i2]) {
               if (!e[i2]) {
                 var c = "function" == typeof __require && __require;
-                if (!f && c)
-                  return c(i2, true);
-                if (u)
-                  return u(i2, true);
+                if (!f && c) return c(i2, true);
+                if (u) return u(i2, true);
                 var a = new Error("Cannot find module '" + i2 + "'");
                 throw a.code = "MODULE_NOT_FOUND", a;
               }
@@ -91,8 +86,7 @@ var require_pica = __commonJS({
             }
             return n[i2].exports;
           }
-          for (var u = "function" == typeof __require && __require, i = 0; i < t.length; i++)
-            o(t[i]);
+          for (var u = "function" == typeof __require && __require, i = 0; i < t.length; i++) o(t[i]);
           return o;
         }
         return r;
@@ -295,8 +289,7 @@ var require_pica = __commonJS({
         function hasAlpha(src, width, height) {
           var ptr = 3, len = width * height * 4 | 0;
           while (ptr < len) {
-            if (src[ptr] !== 255)
-              return true;
+            if (src[ptr] !== 255) return true;
             ptr = ptr + 4 | 0;
           }
           return false;
@@ -405,8 +398,7 @@ var require_pica = __commonJS({
           box: {
             win: 0.5,
             fn: function fn(x) {
-              if (x < 0)
-                x = -x;
+              if (x < 0) x = -x;
               return x < 0.5 ? 1 : 0;
             }
           },
@@ -414,8 +406,7 @@ var require_pica = __commonJS({
           hamming: {
             win: 1,
             fn: function fn(x) {
-              if (x < 0)
-                x = -x;
+              if (x < 0) x = -x;
               if (x >= 1) {
                 return 0;
               }
@@ -430,8 +421,7 @@ var require_pica = __commonJS({
           lanczos2: {
             win: 2,
             fn: function fn(x) {
-              if (x < 0)
-                x = -x;
+              if (x < 0) x = -x;
               if (x >= 2) {
                 return 0;
               }
@@ -446,8 +436,7 @@ var require_pica = __commonJS({
           lanczos3: {
             win: 3,
             fn: function fn(x) {
-              if (x < 0)
-                x = -x;
+              if (x < 0) x = -x;
               if (x >= 3) {
                 return 0;
               }
@@ -463,8 +452,7 @@ var require_pica = __commonJS({
           mks2013: {
             win: 2.5,
             fn: function fn(x) {
-              if (x < 0)
-                x = -x;
+              if (x < 0) x = -x;
               if (x >= 2.5) {
                 return 0;
               }
@@ -495,8 +483,7 @@ var require_pica = __commonJS({
         function hasAlpha(src, width, height) {
           var ptr = 3, len = width * height * 4 | 0;
           while (ptr < len) {
-            if (src[ptr] !== 255)
-              return true;
+            if (src[ptr] !== 255) return true;
             ptr = ptr + 4 | 0;
           }
           return false;
@@ -721,11 +708,9 @@ var require_pica = __commonJS({
           var scaleX = toWidth / fromWidth;
           var scaleY = toHeight / fromHeight;
           var minScale = (2 * destTileBorder + MIN_INNER_TILE_SIZE + 1) / srcTileSize;
-          if (minScale > 0.5)
-            return [[toWidth, toHeight]];
+          if (minScale > 0.5) return [[toWidth, toHeight]];
           var stageCount = Math.ceil(Math.log(Math.min(scaleX, scaleY)) / Math.log(minScale));
-          if (stageCount <= 1)
-            return [[toWidth, toHeight]];
+          if (stageCount <= 1) return [[toWidth, toHeight]];
           var result = [];
           for (var i = 0; i < stageCount; i++) {
             var width = Math.round(Math.pow(Math.pow(fromWidth, stageCount - i - 1) * Math.pow(toWidth, i + 1), 1 / stageCount));
@@ -903,10 +888,12 @@ var require_pica = __commonJS({
             var w = new Worker(blobURL);
             w.onmessage = function(ev) {
               URL.revokeObjectURL(blobURL);
+              w.terminate();
               return resolve(ev.data);
             };
             w.onerror = function(e) {
               URL.revokeObjectURL(blobURL);
+              w.terminate();
               reject(e);
             };
           }).then(function(result) {
@@ -981,8 +968,7 @@ var require_pica = __commonJS({
               tileOpts.srcBitmap.close();
               tileOpts.srcBitmap = null;
             }
-            if (!mathLib)
-              mathLib = new MathLib(ev.data.features);
+            if (!mathLib) mathLib = new MathLib(ev.data.features);
             var data = mathLib.resizeAndUnsharp(tileOpts);
             if (returnBitmap) {
               var toImageData = new ImageData(new Uint8ClampedArray(data), tileOpts.toWidth, tileOpts.toHeight);
@@ -1086,8 +1072,7 @@ var require_pica = __commonJS({
           wasm: true
         };
         function MultiMath(options) {
-          if (!(this instanceof MultiMath))
-            return new MultiMath(options);
+          if (!(this instanceof MultiMath)) return new MultiMath(options);
           var opts = assign({}, DEFAULT_OPTIONS, options || {});
           this.options = opts;
           this.__cache = {};
@@ -1111,18 +1096,15 @@ var require_pica = __commonJS({
           return this;
         };
         MultiMath.prototype.init = function() {
-          if (this.__init_promise)
-            return this.__init_promise;
+          if (this.__init_promise) return this.__init_promise;
           if (!this.options.js && this.options.wasm && !this.has_wasm()) {
             return Promise.reject(new Error(`mathlib: only "wasm" was enabled, but it's not supported`));
           }
           var self2 = this;
           this.__init_promise = Promise.all(Object.keys(self2.__modules).map(function(name) {
             var module4 = self2.__modules[name];
-            if (!self2.options.wasm || !self2.has_wasm() || !module4.wasm_fn)
-              return null;
-            if (self2.__wasm[name])
-              return null;
+            if (!self2.options.wasm || !self2.has_wasm() || !module4.wasm_fn) return null;
+            if (self2.__wasm[name]) return null;
             return WebAssembly.compile(self2.__base64decode(module4.wasm_src)).then(function(m) {
               self2.__wasm[name] = m;
             });
@@ -1146,8 +1128,7 @@ var require_pica = __commonJS({
           return this.__memory;
         };
         MultiMath.prototype.__instance = function instance(name, memsize, env_extra) {
-          if (memsize)
-            this.__reallocate(memsize);
+          if (memsize) this.__reallocate(memsize);
           if (!this.__wasm[name]) {
             var module4 = this.__modules[name];
             this.__wasm[name] = new WebAssembly.Module(this.__base64decode(module4.wasm_src));
@@ -1204,17 +1185,14 @@ var require_pica = __commonJS({
         "use strict";
         var wa;
         module3.exports = function hasWebAssembly() {
-          if (typeof wa !== "undefined")
-            return wa;
+          if (typeof wa !== "undefined") return wa;
           wa = false;
-          if (typeof WebAssembly === "undefined")
-            return wa;
+          if (typeof WebAssembly === "undefined") return wa;
           try {
             var bin = new Uint8Array([0, 97, 115, 109, 1, 0, 0, 0, 1, 6, 1, 96, 1, 127, 1, 127, 3, 2, 1, 0, 5, 3, 1, 0, 1, 7, 8, 1, 4, 116, 101, 115, 116, 0, 0, 10, 16, 1, 14, 0, 32, 0, 65, 1, 54, 2, 0, 32, 0, 40, 2, 0, 11]);
             var module4 = new WebAssembly.Module(bin);
             var instance = new WebAssembly.Instance(module4, {});
-            if (instance.exports.test(4) !== 0)
-              wa = true;
+            if (instance.exports.test(4) !== 0) wa = true;
             return wa;
           } catch (__) {
           }
@@ -1353,21 +1331,15 @@ var require_pica = __commonJS({
           throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
         }
         function _unsupportedIterableToArray(o, minLen) {
-          if (!o)
-            return;
-          if (typeof o === "string")
-            return _arrayLikeToArray(o, minLen);
+          if (!o) return;
+          if (typeof o === "string") return _arrayLikeToArray(o, minLen);
           var n = Object.prototype.toString.call(o).slice(8, -1);
-          if (n === "Object" && o.constructor)
-            n = o.constructor.name;
-          if (n === "Map" || n === "Set")
-            return Array.from(o);
-          if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-            return _arrayLikeToArray(o, minLen);
+          if (n === "Object" && o.constructor) n = o.constructor.name;
+          if (n === "Map" || n === "Set") return Array.from(o);
+          if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
         }
         function _arrayLikeToArray(arr, len) {
-          if (len == null || len > arr.length)
-            len = arr.length;
+          if (len == null || len > arr.length) len = arr.length;
           for (var i = 0, arr2 = new Array(len); i < len; i++) {
             arr2[i] = arr[i];
           }
@@ -1375,8 +1347,7 @@ var require_pica = __commonJS({
         }
         function _iterableToArrayLimit(arr, i) {
           var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
-          if (_i == null)
-            return;
+          if (_i == null) return;
           var _arr = [];
           var _n = true;
           var _d = false;
@@ -1384,26 +1355,22 @@ var require_pica = __commonJS({
           try {
             for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
               _arr.push(_s.value);
-              if (i && _arr.length === i)
-                break;
+              if (i && _arr.length === i) break;
             }
           } catch (err) {
             _d = true;
             _e = err;
           } finally {
             try {
-              if (!_n && _i["return"] != null)
-                _i["return"]();
+              if (!_n && _i["return"] != null) _i["return"]();
             } finally {
-              if (_d)
-                throw _e;
+              if (_d) throw _e;
             }
           }
           return _arr;
         }
         function _arrayWithHoles(arr) {
-          if (Array.isArray(arr))
-            return arr;
+          if (Array.isArray(arr)) return arr;
         }
         var assign = _dereq_("object-assign");
         var webworkify = _dereq_("webworkify");
@@ -1464,13 +1431,11 @@ var require_pica = __commonJS({
           };
         }
         function Pica(options) {
-          if (!(this instanceof Pica))
-            return new Pica(options);
+          if (!(this instanceof Pica)) return new Pica(options);
           this.options = assign({}, DEFAULT_PICA_OPTS, options || {});
           var limiter_key = "lk_".concat(this.options.concurrency);
           this.__limit = singletones[limiter_key] || utils.limiter(this.options.concurrency);
-          if (!singletones[limiter_key])
-            singletones[limiter_key] = this.__limit;
+          if (!singletones[limiter_key]) singletones[limiter_key] = this.__limit;
           this.features = {
             js: false,
             // pure JS implementation, can be disabled for testing
@@ -1487,8 +1452,7 @@ var require_pica = __commonJS({
         }
         Pica.prototype.init = function() {
           var _this = this;
-          if (this.__initPromise)
-            return this.__initPromise;
+          if (this.__initPromise) return this.__initPromise;
           if (typeof ImageData !== "undefined" && typeof Uint8ClampedArray !== "undefined") {
             try {
               new ImageData(new Uint8ClampedArray(400), 10, 10);
@@ -1539,8 +1503,7 @@ var require_pica = __commonJS({
                 _this.debug("createImageBitmap() resize supported, but disabled by config");
                 return;
               }
-              if (features.indexOf("cib") >= 0)
-                _this.features.cib = status;
+              if (features.indexOf("cib") >= 0) _this.features.cib = status;
             });
           }
           CAN_USE_CANVAS_GET_IMAGE_DATA = utils.can_use_canvas(this.options.createCanvas);
@@ -1572,22 +1535,17 @@ var require_pica = __commonJS({
             }
             return new Promise(function(resolve, reject) {
               var w = _this2.__workersPool.acquire();
-              if (opts.cancelToken)
-                opts.cancelToken["catch"](function(err) {
-                  return reject(err);
-                });
+              if (opts.cancelToken) opts.cancelToken["catch"](function(err) {
+                return reject(err);
+              });
               w.value.onmessage = function(ev) {
                 w.release();
-                if (ev.data.err)
-                  reject(ev.data.err);
-                else
-                  resolve(ev.data);
+                if (ev.data.err) reject(ev.data.err);
+                else resolve(ev.data);
               };
               var transfer = [];
-              if (tileOpts.src)
-                transfer.push(tileOpts.src.buffer);
-              if (tileOpts.srcBitmap)
-                transfer.push(tileOpts.srcBitmap);
+              if (tileOpts.src) transfer.push(tileOpts.src.buffer);
+              if (tileOpts.srcBitmap) transfer.push(tileOpts.srcBitmap);
               w.value.postMessage({
                 opts: tileOpts,
                 features: _this2.__requested_features,
@@ -1610,8 +1568,7 @@ var require_pica = __commonJS({
             });
           }
           if (utils.isCanvas(from)) {
-            if (!stageEnv.srcCtx)
-              stageEnv.srcCtx = from.getContext("2d");
+            if (!stageEnv.srcCtx) stageEnv.srcCtx = from.getContext("2d");
             this.debug("Get tile pixel data");
             extractTo.src = stageEnv.srcCtx.getImageData(tile.x, tile.y, tile.width, tile.height).data;
             return extractTo;
@@ -1663,8 +1620,7 @@ var require_pica = __commonJS({
           };
           var processTile = function processTile2(tile) {
             return _this3.__limit(function() {
-              if (opts.canceled)
-                return opts.cancelToken;
+              if (opts.canceled) return opts.cancelToken;
               var tileOpts = {
                 width: tile.width,
                 height: tile.height,
@@ -1686,8 +1642,7 @@ var require_pica = __commonJS({
                 _this3.debug("Invoke resize math");
                 return _this3.__invokeResize(tileOpts2, opts);
               }).then(function(result) {
-                if (opts.canceled)
-                  return opts.cancelToken;
+                if (opts.canceled) return opts.cancelToken;
                 stageEnv.srcImageData = null;
                 return _this3.__landTileData(tile, result, stageEnv);
               });
@@ -1695,16 +1650,14 @@ var require_pica = __commonJS({
           };
           return Promise.resolve().then(function() {
             stageEnv.toCtx = to.getContext("2d");
-            if (utils.isCanvas(from))
-              return null;
+            if (utils.isCanvas(from)) return null;
             if (utils.isImageBitmap(from)) {
               stageEnv.srcImageBitmap = from;
               stageEnv.isImageBitmapReused = true;
               return null;
             }
             if (utils.isImage(from)) {
-              if (!CAN_CREATE_IMAGE_BITMAP)
-                return null;
+              if (!CAN_CREATE_IMAGE_BITMAP) return null;
               _this3.debug("Decode image via createImageBitmap");
               return createImageBitmap(from).then(function(imageBitmap) {
                 stageEnv.srcImageBitmap = imageBitmap;
@@ -1714,8 +1667,7 @@ var require_pica = __commonJS({
             }
             throw new Error('Pica: ".from" should be Image, Canvas or ImageBitmap');
           }).then(function() {
-            if (opts.canceled)
-              return opts.cancelToken;
+            if (opts.canceled) return opts.cancelToken;
             _this3.debug("Calculate tiles");
             var regions = createRegions({
               width: opts.width,
@@ -1730,8 +1682,7 @@ var require_pica = __commonJS({
             });
             function cleanup(stageEnv2) {
               if (stageEnv2.srcImageBitmap) {
-                if (!stageEnv2.isImageBitmapReused)
-                  stageEnv2.srcImageBitmap.close();
+                if (!stageEnv2.isImageBitmapReused) stageEnv2.srcImageBitmap.close();
                 stageEnv2.srcImageBitmap = null;
               }
             }
@@ -1748,17 +1699,13 @@ var require_pica = __commonJS({
         };
         Pica.prototype.__processStages = function(stages, from, to, opts) {
           var _this4 = this;
-          if (opts.canceled)
-            return opts.cancelToken;
+          if (opts.canceled) return opts.cancelToken;
           var _stages$shift = stages.shift(), _stages$shift2 = _slicedToArray(_stages$shift, 2), toWidth = _stages$shift2[0], toHeight = _stages$shift2[1];
           var isLastStage = stages.length === 0;
           var filter;
-          if (isLastStage || filter_info.q2f.indexOf(opts.filter) < 0)
-            filter = opts.filter;
-          else if (opts.filter === "box")
-            filter = "box";
-          else
-            filter = "hamming";
+          if (isLastStage || filter_info.q2f.indexOf(opts.filter) < 0) filter = opts.filter;
+          else if (opts.filter === "box") filter = "box";
+          else filter = "hamming";
           opts = assign({}, opts, {
             toWidth,
             toHeight,
@@ -1769,8 +1716,7 @@ var require_pica = __commonJS({
             tmpCanvas = this.options.createCanvas(toWidth, toHeight);
           }
           return this.__tileAndResize(from, isLastStage ? to : tmpCanvas, opts).then(function() {
-            if (isLastStage)
-              return to;
+            if (isLastStage) return to;
             opts.width = toWidth;
             opts.height = toHeight;
             return _this4.__processStages(stages, tmpCanvas, to, opts);
@@ -1790,8 +1736,7 @@ var require_pica = __commonJS({
             resizeHeight: opts.toHeight,
             resizeQuality: utils.cib_quality_name(filter_info.f2q[opts.filter])
           }).then(function(imageBitmap) {
-            if (opts.canceled)
-              return opts.cancelToken;
+            if (opts.canceled) return opts.cancelToken;
             if (!opts.unsharpAmount) {
               toCtx.drawImage(imageBitmap, 0, 0);
               imageBitmap.close();
@@ -1837,8 +1782,7 @@ var require_pica = __commonJS({
           if (to.width === 0 || to.height === 0) {
             return Promise.reject(new Error("Invalid output size: ".concat(to.width, "x").concat(to.height)));
           }
-          if (opts.unsharpRadius > 2)
-            opts.unsharpRadius = 2;
+          if (opts.unsharpRadius > 2) opts.unsharpRadius = 2;
           opts.canceled = false;
           if (opts.cancelToken) {
             opts.cancelToken = opts.cancelToken.then(function(data) {
@@ -1852,8 +1796,7 @@ var require_pica = __commonJS({
           var DEST_TILE_BORDER = 3;
           opts.__destTileBorder = Math.ceil(Math.max(DEST_TILE_BORDER, 2.5 * opts.unsharpRadius | 0));
           return this.init().then(function() {
-            if (opts.canceled)
-              return opts.cancelToken;
+            if (opts.canceled) return opts.cancelToken;
             if (_this6.features.cib) {
               if (filter_info.q2f.indexOf(opts.filter) >= 0) {
                 return _this6.__resizeViaCreateImageBitmap(from, to, opts);
@@ -1928,8 +1871,7 @@ var require_image_traverse = __commonJS({
     }
     function to_hex(number) {
       var n = number.toString(16).toUpperCase();
-      for (var i = 2 - n.length; i > 0; i--)
-        n = "0" + n;
+      for (var i = 2 - n.length; i > 0; i--) n = "0" + n;
       return "0x" + n;
     }
     function utf8_encode(str) {
@@ -1967,8 +1909,7 @@ var require_image_traverse = __commonJS({
       }];
       while (this.ifds_to_read.length > 0 && !this.aborted) {
         var i = this.ifds_to_read.shift();
-        if (!i.offset)
-          continue;
+        if (!i.offset) continue;
         this.scan_ifd(i.id, i.offset, on_entry);
       }
     };
@@ -1976,10 +1917,8 @@ var require_image_traverse = __commonJS({
       var ifds = {};
       ifds.ifd0 = { id: 0, entries: [] };
       this.each(function(entry) {
-        if (on_entry(entry) === false && !entry.is_subifd_link)
-          return;
-        if (entry.is_subifd_link && entry.count !== 1 && entry.format !== 4)
-          return;
+        if (on_entry(entry) === false && !entry.is_subifd_link) return;
+        if (entry.is_subifd_link && entry.count !== 1 && entry.format !== 4) return;
         if (!ifds["ifd" + entry.ifd]) {
           ifds["ifd" + entry.ifd] = { id: entry.ifd, entries: [] };
         }
@@ -2014,8 +1953,7 @@ var require_image_traverse = __commonJS({
           self2.write_uint16(entry_offset + 2, entry.format);
           self2.write_uint32(entry_offset + 4, entry.count);
           if (entry.is_subifd_link) {
-            if (ifds["ifd" + entry.tag])
-              ifds["ifd" + entry.tag].link_offset = entry_offset + 8;
+            if (ifds["ifd" + entry.tag]) ifds["ifd" + entry.tag].link_offset = entry_offset + 8;
           } else if (entry.data_length <= 4) {
             self2.output.set(
               self2.input.subarray(entry.data_offset - self2.start, entry.data_offset - self2.start + 4),
@@ -2031,28 +1969,24 @@ var require_image_traverse = __commonJS({
           }
         });
         var next_ifd = ifds["ifd" + (ifds[ifd_no].id + 1)];
-        if (next_ifd)
-          next_ifd.link_offset = ifd_end - 4;
+        if (next_ifd) next_ifd.link_offset = ifd_end - 4;
       });
       Object.keys(ifds).forEach(function(ifd_no) {
         if (ifds[ifd_no].written_offset && ifds[ifd_no].link_offset) {
           self2.write_uint32(ifds[ifd_no].link_offset, ifds[ifd_no].written_offset);
         }
       });
-      if (this.output.length !== offset)
-        throw error("internal error: incorrect buffer size allocated");
+      if (this.output.length !== offset) throw error("internal error: incorrect buffer size allocated");
       return this.output;
     };
     ExifParser.prototype.read_uint16 = function(offset) {
       var d = this.input;
-      if (offset + 2 > d.length)
-        throw error("unexpected EOF", "EBADDATA");
+      if (offset + 2 > d.length) throw error("unexpected EOF", "EBADDATA");
       return this.big_endian ? d[offset] * 256 + d[offset + 1] : d[offset] + d[offset + 1] * 256;
     };
     ExifParser.prototype.read_uint32 = function(offset) {
       var d = this.input;
-      if (offset + 4 > d.length)
-        throw error("unexpected EOF", "EBADDATA");
+      if (offset + 4 > d.length) throw error("unexpected EOF", "EBADDATA");
       return this.big_endian ? d[offset] * 16777216 + d[offset + 1] * 65536 + d[offset + 2] * 256 + d[offset + 3] : d[offset] + d[offset + 1] * 256 + d[offset + 2] * 65536 + d[offset + 3] * 16777216;
     };
     ExifParser.prototype.write_uint16 = function(offset, value) {
@@ -2169,8 +2103,7 @@ var require_image_traverse = __commonJS({
           } catch (_) {
             value = null;
           }
-          if (value && value[value.length - 1] === "\0")
-            value = value.slice(0, -1);
+          if (value && value[value.length - 1] === "\0") value = value.slice(0, -1);
         }
         if (this.is_subifd_link(ifd_no, tag)) {
           if (Array.isArray(value) && Number.isInteger(value[0]) && value[0] > 0) {
@@ -2222,8 +2155,7 @@ var require_image_traverse = __commonJS({
       var offset = 0, length = jpeg_bin.length, inside_scan = false;
       for (; ; ) {
         var segment_code, segment_length;
-        if (offset + 1 >= length)
-          throw error("Unexpected EOF", "EBADDATA");
+        if (offset + 1 >= length) throw error("Unexpected EOF", "EBADDATA");
         var byte1 = jpeg_bin[offset];
         var byte2 = jpeg_bin[offset + 1];
         if (byte1 === 255 && byte2 === 255) {
@@ -2234,13 +2166,10 @@ var require_image_traverse = __commonJS({
           segment_length = 2;
           if (208 <= segment_code && segment_code <= 217 || segment_code === 1) {
           } else {
-            if (offset + 3 >= length)
-              throw error("Unexpected EOF", "EBADDATA");
+            if (offset + 3 >= length) throw error("Unexpected EOF", "EBADDATA");
             segment_length += jpeg_bin[offset + 2] * 256 + jpeg_bin[offset + 3];
-            if (segment_length < 2)
-              throw error("Invalid segment length", "EBADDATA");
-            if (offset + segment_length - 1 >= length)
-              throw error("Unexpected EOF", "EBADDATA");
+            if (segment_length < 2) throw error("Invalid segment length", "EBADDATA");
+            if (offset + segment_length - 1 >= length) throw error("Unexpected EOF", "EBADDATA");
           }
           if (inside_scan) {
             if (segment_code >= 208 && segment_code <= 215) {
@@ -2248,15 +2177,12 @@ var require_image_traverse = __commonJS({
               inside_scan = false;
             }
           }
-          if (segment_code === 218)
-            inside_scan = true;
+          if (segment_code === 218) inside_scan = true;
         } else if (inside_scan) {
           for (var pos = offset + 1; ; pos++) {
-            if (pos >= length)
-              throw error("Unexpected EOF", "EBADDATA");
+            if (pos >= length) throw error("Unexpected EOF", "EBADDATA");
             if (jpeg_bin[pos] === 255) {
-              if (pos + 1 >= length)
-                throw error("Unexpected EOF", "EBADDATA");
+              if (pos + 1 >= length) throw error("Unexpected EOF", "EBADDATA");
               if (jpeg_bin[pos + 1] !== 0) {
                 segment_code = 0;
                 segment_length = pos - offset;
@@ -2267,10 +2193,8 @@ var require_image_traverse = __commonJS({
         } else {
           throw error("Unexpected byte at segment start: " + to_hex(byte1) + " (offset " + to_hex(offset) + ")", "EBADDATA");
         }
-        if (on_segment({ code: segment_code, offset, length: segment_length }) === false)
-          break;
-        if (segment_code === 217)
-          break;
+        if (on_segment({ code: segment_code, offset, length: segment_length }) === false) break;
+        if (segment_code === 217) break;
         offset += segment_length;
       }
     };
@@ -2320,8 +2244,7 @@ var require_image_traverse = __commonJS({
         throw error("Invalid argument (on_exif_entry), Function expected", "EINVAL");
       }
       module.exports.jpeg_segments_each(jpeg_bin, function(segment) {
-        if (segment.code === 218)
-          return false;
+        if (segment.code === 218) return false;
         if (segment.code === 225 && segment.length >= 10 && jpeg_bin[segment.offset + 4] === 69 && jpeg_bin[segment.offset + 5] === 120 && jpeg_bin[segment.offset + 6] === 105 && jpeg_bin[segment.offset + 7] === 102 && jpeg_bin[segment.offset + 8] === 0 && jpeg_bin[segment.offset + 9] === 0) {
           new ExifParser(jpeg_bin, segment.offset + 10, segment.offset + segment.length).each(on_exif_entry);
           return false;
@@ -2337,14 +2260,11 @@ var require_image_traverse = __commonJS({
       }
       var stop_search = false;
       return module.exports.jpeg_segments_filter(jpeg_bin, function(segment) {
-        if (stop_search)
-          return;
-        if (segment.code === 218)
-          stop_search = true;
+        if (stop_search) return;
+        if (segment.code === 218) stop_search = true;
         if (segment.code === 225 && segment.length >= 10 && jpeg_bin[segment.offset + 4] === 69 && jpeg_bin[segment.offset + 5] === 120 && jpeg_bin[segment.offset + 6] === 105 && jpeg_bin[segment.offset + 7] === 102 && jpeg_bin[segment.offset + 8] === 0 && jpeg_bin[segment.offset + 9] === 0) {
           var new_exif = new ExifParser(jpeg_bin, segment.offset + 10, segment.offset + segment.length).filter(on_exif_entry);
-          if (!new_exif)
-            return false;
+          if (!new_exif) return false;
           var header = new Uint8Array(10);
           header.set(jpeg_bin.slice(segment.offset, segment.offset + 10));
           header[2] = new_exif.length + 8 >>> 8 & 255;
@@ -2358,12 +2278,9 @@ var require_image_traverse = __commonJS({
       var comment_inserted = false, segment_count = 0;
       return module.exports.jpeg_segments_filter(jpeg_bin, function(segment) {
         segment_count++;
-        if (segment_count === 1 && segment.code === 216)
-          return;
-        if (segment_count === 2 && segment.code === 224)
-          return;
-        if (comment_inserted)
-          return;
+        if (segment_count === 1 && segment.code === 216) return;
+        if (segment_count === 2 && segment.code === 224) return;
+        if (comment_inserted) return;
         comment = utf8_encode(comment);
         var csegment = new Uint8Array(5 + comment.length);
         var offset = 0;
@@ -2390,8 +2307,7 @@ var require_jpeg_plugins = __commonJS({
     function jpeg_patch_exif(env) {
       return this._getUint8Array(env.blob).then(function(data) {
         env.is_jpeg = image_traverse.is_jpeg(data);
-        if (!env.is_jpeg)
-          return Promise.resolve(env);
+        if (!env.is_jpeg) return Promise.resolve(env);
         env.orig_blob = env.blob;
         try {
           var exif_is_big_endian, orientation_offset;
@@ -2417,11 +2333,9 @@ var require_jpeg_plugins = __commonJS({
       });
     }
     function jpeg_rotate_canvas(env) {
-      if (!env.is_jpeg)
-        return Promise.resolve(env);
+      if (!env.is_jpeg) return Promise.resolve(env);
       var orientation = env.orientation - 1;
-      if (!orientation)
-        return Promise.resolve(env);
+      if (!orientation) return Promise.resolve(env);
       var canvas;
       if (orientation & 4) {
         canvas = this.pica.options.createCanvas(env.out_canvas.height, env.out_canvas.width);
@@ -2430,12 +2344,9 @@ var require_jpeg_plugins = __commonJS({
       }
       var ctx = canvas.getContext("2d");
       ctx.save();
-      if (orientation & 1)
-        ctx.transform(-1, 0, 0, 1, canvas.width, 0);
-      if (orientation & 2)
-        ctx.transform(-1, 0, 0, -1, canvas.width, canvas.height);
-      if (orientation & 4)
-        ctx.transform(0, 1, 1, 0, 0, 0);
+      if (orientation & 1) ctx.transform(-1, 0, 0, 1, canvas.width, 0);
+      if (orientation & 2) ctx.transform(-1, 0, 0, -1, canvas.width, canvas.height);
+      if (orientation & 4) ctx.transform(0, 1, 1, 0, 0, 0);
       ctx.drawImage(env.out_canvas, 0, 0);
       ctx.restore();
       env.out_canvas.width = env.out_canvas.height = 0;
@@ -2443,29 +2354,23 @@ var require_jpeg_plugins = __commonJS({
       return Promise.resolve(env);
     }
     function jpeg_attach_orig_segments(env) {
-      if (!env.is_jpeg)
-        return Promise.resolve(env);
+      if (!env.is_jpeg) return Promise.resolve(env);
       return Promise.all([
         this._getUint8Array(env.blob),
         this._getUint8Array(env.out_blob)
       ]).then(function(res) {
         var data = res[0];
         var data_out = res[1];
-        if (!image_traverse.is_jpeg(data))
-          return Promise.resolve(env);
+        if (!image_traverse.is_jpeg(data)) return Promise.resolve(env);
         var segments = [];
         image_traverse.jpeg_segments_each(data, function(segment) {
-          if (segment.code === 218)
-            return false;
+          if (segment.code === 218) return false;
           segments.push(segment);
         });
         segments = segments.filter(function(segment) {
-          if (segment.code === 226)
-            return false;
-          if (segment.code >= 224 && segment.code < 240)
-            return true;
-          if (segment.code === 254)
-            return true;
+          if (segment.code === 226) return false;
+          if (segment.code >= 224 && segment.code < 240) return true;
+          if (segment.code === 254) return true;
           return false;
         }).map(function(segment) {
           return data.slice(segment.offset, segment.offset + segment.length);
@@ -2496,8 +2401,7 @@ var require_image_blob_reduce = __commonJS({
     var utils = require_utils();
     var pica = require_pica();
     function ImageBlobReduce(options) {
-      if (!(this instanceof ImageBlobReduce))
-        return new ImageBlobReduce(options);
+      if (!(this instanceof ImageBlobReduce)) return new ImageBlobReduce(options);
       options = options || {};
       this.pica = options.pica || pica({});
       this.initialized = false;
@@ -2541,10 +2445,8 @@ var require_image_blob_reduce = __commonJS({
       });
     };
     ImageBlobReduce.prototype.before = function(method_name, fn) {
-      if (!this[method_name])
-        throw new Error('Method "' + method_name + '" does not exist');
-      if (typeof fn !== "function")
-        throw new Error('Invalid argument "fn", function expected');
+      if (!this[method_name]) throw new Error('Method "' + method_name + '" does not exist');
+      if (typeof fn !== "function") throw new Error('Invalid argument "fn", function expected');
       var old_fn = this[method_name];
       var self2 = this;
       this[method_name] = function(env) {
@@ -2555,10 +2457,8 @@ var require_image_blob_reduce = __commonJS({
       return this;
     };
     ImageBlobReduce.prototype.after = function(method_name, fn) {
-      if (!this[method_name])
-        throw new Error('Method "' + method_name + '" does not exist');
-      if (typeof fn !== "function")
-        throw new Error('Invalid argument "fn", function expected');
+      if (!this[method_name]) throw new Error('Method "' + method_name + '" does not exist');
+      if (typeof fn !== "function") throw new Error('Invalid argument "fn", function expected');
       var old_fn = this[method_name];
       var self2 = this;
       this[method_name] = function(env) {
@@ -2584,8 +2484,7 @@ var require_image_blob_reduce = __commonJS({
     };
     ImageBlobReduce.prototype._calculate_size = function(env) {
       var scale_factor = env.opts.max / Math.max(env.image.width, env.image.height);
-      if (scale_factor > 1)
-        scale_factor = 1;
+      if (scale_factor > 1) scale_factor = 1;
       env.transform_width = Math.max(Math.round(env.image.width * scale_factor), 1);
       env.transform_height = Math.max(Math.round(env.image.height * scale_factor), 1);
       env.scale_factor = scale_factor;
@@ -2605,8 +2504,7 @@ var require_image_blob_reduce = __commonJS({
       env.image.src = "";
       env.image = null;
       var URL2 = window.URL || window.webkitURL || window.mozURL || window.msURL;
-      if (URL2.revokeObjectURL)
-        URL2.revokeObjectURL(env.image_url);
+      if (URL2.revokeObjectURL) URL2.revokeObjectURL(env.image_url);
       env.image_url = null;
       return Promise.resolve(env);
     };
